@@ -1,0 +1,4 @@
+@everyone
+Hello! My name is Weather bot, and I'm your one-stop discord shop for the weather!!
+For a list of my commands simply type !helper in any chat, and I'll send you my commands.
+Always be one step ahead of the elements!

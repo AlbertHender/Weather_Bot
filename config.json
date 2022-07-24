@@ -1,0 +1,8 @@
+{
+  "KEYS" : [
+    {
+    "Discord" : "Put discord key here",
+    "Weather" : "Put API key here"
+    }
+  ]
+}
