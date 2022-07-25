@@ -1,1 +1,1 @@
-worker: python Weather_Bot.py
+worker: python main.py
