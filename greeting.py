@@ -19,7 +19,13 @@ class Greeting(commands.Cog):
     async def on_presence_update(self, before, after):
         if before.guild not in self.disabled.values():
 
-            if after.status == disnake.Status('online') and after.status != before.status:
+            if before.status == disnake.Status('idle') and after.status == disnake.Status('online') and \
+                    after.status != before.status:
+                print(f"Welcome Back!!!!")
+                guild = self.bot.get_guild(after.guild.id)
+                await guild.system_channel.send(f"Welcome Back {after.name}!!!!")
+
+            elif after.status == disnake.Status('online') and after.status != before.status:
                 print('Hello!')
                 guild = self.bot.get_guild(after.guild.id)
                 await guild.system_channel.send(f'Hello {after.name}')
@@ -34,11 +40,6 @@ class Greeting(commands.Cog):
                 guild = self.bot.get_guild(after.guild.id)
                 await guild.system_channel.send(f"COME BACK {after.name}!!!!")
 
-            elif before.status == disnake.Status('idle') and after.status == disnake.Status('online') and \
-                    after.status != before.status:
-                print(f"Welcome Back!!!!")
-                guild = self.bot.get_guild(after.guild.id)
-                await guild.system_channel.send(f"Welcome Back {after.name}!!!!")
 
     @commands.Cog.listener()
     async def on_member_join(self, member):
