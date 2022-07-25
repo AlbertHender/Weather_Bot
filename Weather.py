@@ -2,6 +2,7 @@ import disnake
 from disnake.ext import commands, tasks
 import requests
 import json
+from datetime import datetime
 
 
 class Weather(commands.Cog):
@@ -13,12 +14,15 @@ class Weather(commands.Cog):
         self.key = self.key['KEYS'][-1]['Weather']
         self.furl = {}
         self.days = 1
+        self.guilds = {}
+        self.dailyForecast.start()
 
     @commands.command()
     async def setCity(self, ctx, *, city):
         self.city[ctx.guild.id] = city
         self.furl[ctx.guild.id] = 'http://api.weatherapi.com/v1/forecast.json?key=' \
                                   '{}&q={}&days={}'.format(self.key, self.city[ctx.guild.id], self.days)
+        self.guilds[ctx.guild.id] = ctx
         print(f"City is now {city}")
 
     @commands.command()
@@ -87,13 +91,13 @@ class Weather(commands.Cog):
 
         self.days = days
         self.furl[ctx.guild.id] = 'http://api.weatherapi.com/v1/forecast.json?key=' \
-                                  '{}&q={}&days={}'.format(self.key, self.city, self.days)
+                                  '{}&q={}&days={}'.format(self.key, self.city[ctx.guild.id], self.days)
         self.days = 1
         data = requests.get(self.furl[ctx.guild.id]).json()
         return data
 
     async def cityCheck(self, ctx):
-        if self.city == {}:
+        if ctx.guild.id not in self.city:
             print("City not set")
 
             async def sendMistake(cx):
@@ -115,6 +119,30 @@ class Weather(commands.Cog):
 
         else:
             return True
+
+    async def rundown(self, ctx):
+        correct = await self.cityCheck(ctx=ctx)
+        if not correct:
+            return None
+
+        data = await self.getForecastInfo(ctx, days=1)
+        data = data['forecast']['forecastday'][0]['hour']
+        guild = ctx.guild
+        chanel_id = ctx.channel.id
+        channel = await guild.fetch_channel(chanel_id)
+        hours = ''
+        for i in data[6:]:
+            day = '({}, {}, {}, {}),'.format(i['time'], i['temp_f'], i['temp_c'], i['condition']['text']) + "\n"
+            hours += day
+        await channel.send(hours)
+
+    @tasks.loop(seconds=1)
+    async def dailyForecast(self):
+        now = datetime.now()
+        current_time = now.strftime("%H:%M:%S")
+        if current_time >= '07:00:00' or current_time <= '7:00:00':
+            for i in self.guilds.values():
+                await self.rundown(ctx=i)
 
 
 def setup(bot):
