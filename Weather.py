@@ -1,9 +1,7 @@
 import os
-
 import disnake
 from disnake.ext import commands, tasks
 import requests
-import json
 from datetime import datetime
 from dotenv import load_dotenv
 
@@ -143,7 +141,7 @@ class Weather(commands.Cog):
     async def dailyForecast(self):
         now = datetime.now()
         check1 = now.replace(hour=7, minute=0, second=0, microsecond=0)
-        check2 = now.replace(hour=7, minute=0, second=1, microsecond=0)
+        check2 = now.replace(hour=7, minute=0, second=2, microsecond=0)
         if check1 <= now <= check2:
             for i in self.guilds.values():
                 await self.rundown(ctx=i)
