@@ -142,8 +142,9 @@ class Weather(commands.Cog):
     @tasks.loop(seconds=1)
     async def dailyForecast(self):
         now = datetime.now()
-        current_time = now.strftime("%H:%M:%S")
-        if current_time >= '07:00:00' or current_time <= '7:00:00':
+        check1 = now.replace(hour=7, minute=0, second=0, microsecond=0)
+        check2 = now.replace(hour=7, minute=0, second=1, microsecond=0)
+        if check1 <= now <= check2:
             for i in self.guilds.values():
                 await self.rundown(ctx=i)
 
