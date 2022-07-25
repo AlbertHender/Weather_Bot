@@ -30,7 +30,7 @@ class Greeting(commands.Cog):
         elif after.status == disnake.Status('idle') and after.status != before.status:
             print(f"WE'RE WAITING!!!!")
             guild = self.bot.get_guild(after.guild.id)
-            await guild.system_channel.send(f"WE'RE WAITING {after.name}!!!!")
+            await guild.system_channel.send(f"COME BACK {after.name}!!!!")
 
         elif before.status == disnake.Status('idle') and after.status == disnake.Status('online') and \
                 after.status != before.status:
