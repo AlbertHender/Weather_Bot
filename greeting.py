@@ -17,7 +17,7 @@ class Greeting(commands.Cog):
 
     @commands.Cog.listener()
     async def on_presence_update(self, before, after):
-        if before.guild.id not in self.disabled.values():
+        if before.guild not in self.disabled.values():
 
             if after.status == disnake.Status('online') and after.status != before.status:
                 print('Hello!')
@@ -48,7 +48,7 @@ class Greeting(commands.Cog):
 
     @commands.command()
     async def disable(self, ctx):
-        self.disabled[ctx.guild] = ctx.guild.id
+        self.disabled[ctx.guild.id] = ctx.guild
         print('Cog Removed')
 
 
