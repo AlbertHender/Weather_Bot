@@ -10,7 +10,7 @@ class Weather(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.city = {}
-        self.key = json.load(open('config.json'))
+        self.key = json.load(open('.env'))
         self.key = self.key['KEYS'][-1]['Weather']
         self.furl = {}
         self.days = 1

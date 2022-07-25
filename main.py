@@ -6,7 +6,7 @@ import Weather
 import help
 
 
-file = open('config.json')
+file = open('.env')
 token = json.load(file)
 intents = disnake.Intents.all()
 
