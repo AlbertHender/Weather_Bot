@@ -1,8 +1,11 @@
+import os
+
 import disnake
 from disnake.ext import commands, tasks
 import requests
 import json
 from datetime import datetime
+from dotenv import load_dotenv
 
 
 class Weather(commands.Cog):
@@ -10,8 +13,7 @@ class Weather(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.city = {}
-        self.key = json.load(open('.env'))
-        self.key = self.key['KEYS'][-1]['Weather']
+        self.key = os.getenv('Weather')
         self.furl = {}
         self.days = 1
         self.guilds = {}

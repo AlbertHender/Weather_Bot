@@ -1,13 +1,12 @@
 import disnake
 from disnake.ext import commands, tasks
-import json
+import os
 import greeting
 import Weather
 import help
+from dotenv import load_dotenv
 
-
-file = open('.env')
-token = json.load(file)
+token = os.getenv('Discord')
 intents = disnake.Intents.all()
 
 cogs = [greeting, Weather, help]
@@ -32,4 +31,4 @@ async def on_command_error(ctx, error):
     raise error
 
 
-bot.run(token["KEYS"][0]["Discord"])
+bot.run(token)
