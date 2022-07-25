@@ -6,6 +6,7 @@ setCity - Sets a city to be looked at (forecast and current require the city to 
 superior - Makes sure everyone knows what the best city is (You can choose that by using setCity)
 forecast - sends the forecast for the set city for at the most the next 3 days
 current - sends the current forecast for the set city
+disable - disables the greeting feature so that it no longer notifies users on another users status
 
 Features:
 This bot welcomes new people entering your server as well as notifies the users in your server when someone
