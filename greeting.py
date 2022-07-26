@@ -22,23 +22,22 @@ class Greeting(commands.Cog):
             if before.status == disnake.Status('idle') and after.status == disnake.Status('online') and \
                     after.status != before.status:
                 print(f"Welcome Back!!!!")
-                guild = self.bot.get_guild(after.guild.id)
-                await guild.system_channel.send(f"Welcome Back {after.name}!!!!")
+                await before.guild.system_channel.send(f'Hello {after.name}')
 
             elif after.status == disnake.Status('online') and after.status != before.status:
                 print('Hello!')
                 guild = self.bot.get_guild(after.guild.id)
-                await guild.system_channel.send(f'Hello {after.name}')
+                await before.guild.system_channel.send(f'Hello {after.name}')
 
             elif after.status == disnake.Status('offline') and after.status != before.status:
                 print(f'See ya!')
                 guild = self.bot.get_guild(after.guild.id)
-                await guild.system_channel.send(f'See you later {after.name}!')
+                await before.guild.system_channel.send(f'See you later {after.name}!')
 
             elif after.status == disnake.Status('idle') and after.status != before.status:
                 print(f"WE'RE WAITING!!!!")
                 guild = self.bot.get_guild(after.guild.id)
-                await guild.system_channel.send(f"COME BACK {after.name}!!!!")
+                await before.guild.system_channel.send(f"COME BACK {after.name}!!!!")
 
 
     @commands.Cog.listener()
