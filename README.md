@@ -1,6 +1,6 @@
 # Weather_Bot
 
-This is a bot that can be used in any discord to server to get updates on any cities current weather conditions along with future forecast.
+This is a bot that can be used in any discord to server to get updates on any cities current weather conditions, conditions throughout the day, as well as future forecast.
 
 # Features:
 - Get the current forecast for any city in the world
