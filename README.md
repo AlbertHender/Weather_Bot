@@ -12,7 +12,7 @@ This is a bot that can be used in any discord to server to get updates on any ci
 
 # Requirements:
 - A python IDE (Pycharm is recommended) <br /> <br />
-- Disnake , Json , Request, and python-dotenv are installed <br /> <br />
+- Disnake , Request, and python-dotenv are installed <br /> <br />
 - A discord bot token <br /> <br />
 - An account with https://www.weatherapi.com/ <br /> <br />
  
