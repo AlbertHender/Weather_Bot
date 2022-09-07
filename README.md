@@ -29,5 +29,5 @@ This is a bot that can be used in any discord to server to get updates on any ci
 
 # Disclaimer
 
-This is not a finished project. There are still things I need to add. For example I still need to fool proof some of the commands and give the user feedback when they incorrectly enter some of the commands. I also want to add an alert system the notifies the server of an alerts that are being reported in their desired city.
+This is not a finished project. I plan on adding additional features such as an alert system the notifies the server of an alerts that are being reported in their desired city.
 
